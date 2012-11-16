@@ -1,4 +1,18 @@
 Sem7curs::Application.routes.draw do
+  devise_for :users
+
+  devise_for :users do
+    get "/", :to => "devise/sessions#new"
+  end
+
+  root :to => "devise/sessions#new"
+
+  authenticated :user do
+    root :to => 'home#index'       # to change later maybe OR  after_sign_in_path_for and after_sign_out_path_for
+  end
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
