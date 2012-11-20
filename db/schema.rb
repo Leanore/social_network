@@ -11,7 +11,57 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116155556) do
+ActiveRecord::Schema.define(:version => 20121119165313) do
+
+  create_table "cities", :force => true do |t|
+    t.integer  "country_id"
+    t.string   "title",      :limit => 50
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.text     "content"
+    t.date     "posted_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "title",      :limit => 50
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "information", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "country_id"
+    t.integer  "city_id"
+    t.date     "date_of_birth"
+    t.string   "gender",        :limit => 1
+    t.text     "about"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.date     "posted_date"
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.date     "posted_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -30,6 +80,8 @@ ActiveRecord::Schema.define(:version => 20121116155556) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "name",                                   :null => false
+    t.string   "surname",                                :null => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

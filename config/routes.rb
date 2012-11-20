@@ -1,14 +1,17 @@
 Sem7curs::Application.routes.draw do
-  devise_for :users
-
-  devise_for :users do
-    get "/", :to => "devise/sessions#new"
-  end
-
-  root :to => "devise/sessions#new"
+  resources :posts
 
   authenticated :user do
-    root :to => 'home#index'       # to change later maybe OR  after_sign_in_path_for and after_sign_out_path_for
+    root :to => 'home#index'
+  end
+  
+  root :to => "home#index"
+  devise_for :users
+  resources :users
+
+    
+  devise_for :users do
+    get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
 
 

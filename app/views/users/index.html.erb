@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Last sign in at</th>
+    <th>Registration date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to "#{user.name} #{user.surname}", user_path(user.id) %></td>
+        <td>
+          <%=user.last_sign_in_at %>
+        </td>
+        <td><%=  user.created_at.to_date %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate(@users) %>
