@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121119165313) do
+ActiveRecord::Schema.define(:version => 20121126145521) do
+
+  create_table "avatars", :force => true do |t|
+    t.integer  "information_id"
+    t.integer  "photo_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "cities", :force => true do |t|
     t.integer  "country_id"
@@ -30,9 +37,10 @@ ActiveRecord::Schema.define(:version => 20121119165313) do
   end
 
   create_table "countries", :force => true do |t|
-    t.string   "title",      :limit => 50
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.string   "title",               :limit => 50
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.string   "iso_two_letter_code", :limit => 2
   end
 
   create_table "information", :force => true do |t|
@@ -46,13 +54,20 @@ ActiveRecord::Schema.define(:version => 20121119165313) do
     t.datetime "updated_at",                 :null => false
   end
 
-  create_table "photos", :force => true do |t|
+  create_table "photo_albums", :force => true do |t|
     t.integer  "user_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "photos", :force => true do |t|
     t.text     "content"
     t.date     "posted_date"
     t.string   "url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "photo_album_id"
   end
 
   create_table "posts", :force => true do |t|

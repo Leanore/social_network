@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   has_one :information, :dependent => :destroy       
   has_many :posts
   has_many :comments
+  has_many :photo_albums
   
-  #has_many :photoalbums
+  after_create :build_details
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :surname, :email, :password, :password_confirmation, :remember_me, :confirmed_at
@@ -17,4 +18,9 @@ class User < ActiveRecord::Base
   
   validates_presence_of :name, :surname
 
+  def build_details
+    self.build_information
+    self.save!
+    self.photo_albums.create(:title => "Main album")
+  end
 end

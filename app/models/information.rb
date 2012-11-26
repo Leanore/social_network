@@ -1,4 +1,5 @@
 class Information < ActiveRecord::Base
-  # attr_accessible :title, :body
   belongs_to :user
+  belongs_to :city
+  has_one :avatar, :dependent => :destroy    # change maybe!
 end

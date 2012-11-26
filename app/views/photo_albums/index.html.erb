@@ -1,0 +1,7 @@
+<h1>PhotoAlbums</h1>
+<% @photo_albums.each do |album|%>
+	<div class="span3">
+		<%= image_tag "empty_album_icon.jpg" %>
+		<h3><%= link_to album.title, root_path %></h3>
+	</div>
+<% end %>

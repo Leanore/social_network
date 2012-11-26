@@ -9,7 +9,7 @@
     <div class="nav-collapse collapse">
       <ul class="nav">
       	<li>
-      		<%= link_to 'Users', users_path%>
+      		<%= link_to 'Community', users_path%>
       	</li>
       	<li>
       		<%= link_to 'Tab1', root_path%>
@@ -30,9 +30,7 @@
 	    <% end %>
 	    <% if user_signed_in? %>
 	    <li>
-	      <p class="navbar-text">
-	        Logged in as <%= link_to "#{current_user.name} #{current_user.surname}", edit_user_registration_path %>
-	      </p>
+	      <%= link_to "Logged in as #{current_user.name} #{current_user.surname}", user_path(current_user.id) %>
 	    </li>
 	    <% else %>
 	    <li>

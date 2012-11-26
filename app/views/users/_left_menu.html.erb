@@ -1,0 +1,23 @@
+<div class="sidebar-nav">
+	<ul class="nav nav-list">
+		<li>
+			<h3><%= link_to "My Page", root_path %></h3>
+		</li>
+		<li>
+			<h3><%= link_to "Messages", root_path %></h3>
+		</li>
+		<li>
+			<h3><%= link_to "Photos", photo_albums_path %></h3>
+		</li>
+		<li>
+			<h3><%= link_to "Followers", root_path %></h3>
+		</li>
+		<li>
+			<h3><%= link_to "Followings", root_path %></h3>
+		</li>
+		<hr />
+		<li>
+			<h3><%= link_to "Settings", edit_user_path(@user.id) %></h3>
+		</li>
+	</ul>
+</div>
