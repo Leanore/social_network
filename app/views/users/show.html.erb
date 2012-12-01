@@ -1,17 +1,22 @@
 <div class="row well right-page-box">
 
-	<div class="page-header">
+	<div class="page-header red-name">
 		<h1> <%= "#{@user.name} #{@user.surname}" %>
+		<div class="pull-right darken">
 		<% if @user == current_user %>
-		<div class="pull-right" style="color: rgb(18, 165, 176);">
 			(your page)
-		</div> <% end %> </h1>
+		<% else %>
+			<%= render 'follow_form' %>
+		<% end %> 
+		</div> 
+		</h1>
 	</div>
+
 
 	<div class="span4">
 
 		<%= render 'users_avatar'%>
-
+		
 	</div>
 	<div class="span5">
 
@@ -19,19 +24,15 @@
 
 	</div>
 	<div class="span2">
-		<h3>
-			<%= link_to "Photos", user_photo_albums_path(@user) %>
-			<%= link_to "Followers", user_photo_albums_path(@user) %>
-			<%= link_to "Followings", user_photo_albums_path(@user) %>
-		</h3>
+		<h3> <%= render 'stats' %> </h3>
 	</div>
 
-	<div class="span9">
+	<div class="span11">
 		<hr/>
 		<%= render 'users_posts' %>
 		<br/>
 		<% if current_user.id == @user.id %>
-			<%= render 'new_post' %>
+		<%= render 'new_post' %>
 		<% end %>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 <div class="sidebar-nav">
-	<ul class="nav nav-list">
+	<ul class="nav nav-list left-menu">
 		<li>
 			<h3><%= link_to "My Page", root_path %></h3>
 		</li>
@@ -10,10 +10,10 @@
 			<h3><%= link_to "Photos", user_photo_albums_path(current_user) %></h3>
 		</li>
 		<li>
-			<h3><%= link_to "Followers", root_path %></h3>
+			<h3><%= link_to "Following", following_user_path(current_user) %></h3>
 		</li>
 		<li>
-			<h3><%= link_to "Followings", root_path %></h3>
+			<h3><%= link_to "Followers", followers_user_path(current_user)  %></h3>
 		</li>
 		<hr />
 		<li>

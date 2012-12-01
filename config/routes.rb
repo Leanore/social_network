@@ -8,12 +8,17 @@ Sem7curs::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   
   resources :users do
+    member do
+      get :following, :followers
+    end
     resources :photo_albums do
       resources :photos
     end
     resources :posts
     resources :messages
   end
+  
+  resources :relationships, only: [:create, :destroy]
    
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session

@@ -44,8 +44,10 @@
 	</dd>
 	<% end %>
 	<br/>
+	<% if @user == current_user %>
 	<dd>
 		<%= link_to "Change", edit_user_path(current_user) %>
 	</dd>
+	<% end %>
 	
 </dl>

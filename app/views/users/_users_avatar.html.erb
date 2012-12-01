@@ -1,8 +1,13 @@
 <div class="avatar">
 	<% if @user.information.photo and !@user.information.photo.blank? %>
-		<%= image_tag @user.information.photo.url %>
+		<%= image_tag @user.information.photo.url, :size => "300x300" %>
 	<% else %>
-		<%= image_tag "empty_album_icon.jpg" %>
+		<%= image_tag "no-avatar.jpg", :size => "250x250" %>
 	<% end %>
-	<%= link_to "Change profile photo", edit_user_path(current_user) %>
+	
+	<% if @user == current_user %>
+		<%= link_to "Change profile photo", edit_user_path(current_user) %>
+	<% else %>
+		<h3><%= link_to "View Photos", user_photo_albums_path(@user) %></h3>
+	<% end %>	
 </div>
