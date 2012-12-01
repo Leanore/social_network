@@ -2,17 +2,15 @@
 
 <div class="form-inputs">
 	<fieldset>
-		<div class="control-group">
-			<%= f.label :avatar, :class => 'control-label' %>
-			<%= f.text_field :avatar%>
-		</div>
+		<%= fields_for @photo do |ph| %>
+			<div class="control-group">
+				<%= ph.label 'Avatar', :class => 'control-label' %>
+				<%= ph.text_field :url, :class => 'control-input' %>
+			</div>
+		<% end %>
 		<div class="control-group">
 			<%= f.label 'Country', :class => 'control-label' %>
 			<%= f.select :country_id, Country.all.collect { |country| [country.title, country.id] }, :include_blank => true %>
-		</div>
-		<div class="control-group">
-			<%= f.label :city, :class => 'control-label' %>
-			<%= f.text_field :city%>
 		</div>
 		<div class="control-group">
 			<%= f.label :gender, :class => 'control-label' %>

@@ -1,0 +1,8 @@
+<div class="avatar">
+	<% if @user.information.photo and !@user.information.photo.blank? %>
+		<%= image_tag @user.information.photo.url %>
+	<% else %>
+		<%= image_tag "empty_album_icon.jpg" %>
+	<% end %>
+	<%= link_to "Change profile photo", edit_user_path(current_user) %>
+</div>

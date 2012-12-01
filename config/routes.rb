@@ -1,17 +1,4 @@
 Sem7curs::Application.routes.draw do
-  get "photo_albums/index"
-
-  get "photo_albums/show"
-
-  get "photo_albums/edit"
-
-  get "photo_album/index"
-
-  get "photo_album/show"
-
-  get "photo_album/edit"
-
-  resources :posts
 
   authenticated :user do
     root :to => 'users#show'
@@ -20,13 +7,18 @@ Sem7curs::Application.routes.draw do
   root :to => "home#index"
   devise_for :users, :controllers => {:registrations => "registrations"}
   
-  resources :users
+  resources :users do
+    resources :photo_albums do
+      resources :photos
+    end
+    resources :posts
+    resources :messages
+  end
    
   devise_for :users do
     get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
   end
-  
-  resources :photo_albums
+
 
 
 

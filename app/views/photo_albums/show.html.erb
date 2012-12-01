@@ -1,2 +1,13 @@
-<h1>PhotoAlbums#show</h1>
-<p>Find me in app/views/photo_albums/show.html.erb</p>
+<h1><%= @photo_album.title %></h1>
+<% if @photo_album.photos and  !@photo_album.photos.empty? %>
+	<% @photo_album.photos.each do |photo|%>
+		<div class="span3">
+			<%= image_tag "empty_album_icon.jpg" %>
+			<h3><%= link_to photo.url, user_photo_album_photo_path(current_user.id, @photo_album.id, photo.id) %></h3>
+		</div>
+	<% end %>
+<% else %>
+	<p>Empty album</p>
+<% end %>
+
+<%= link_to 'Add photo', new_user_photo_album_photo_path(@photo_album.id) %>

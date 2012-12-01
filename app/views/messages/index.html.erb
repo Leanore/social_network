@@ -1,0 +1,65 @@
+<div class="span6">
+	<legend>
+		<h1>Received messages</h1>
+	</legend>
+
+	<table>
+		<% @received_messages.each do |message| %>
+		<tr>
+			<th><%= message.title %></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<td><%= message.content %></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td>
+				<%= link_to 'Show', user_message_path(@user, message) %>
+				<%= link_to 'Destroy', [@user, message], method: :delete %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><%= link_to 'Answer', new_user_message_path(@user)  %></td>
+		</tr>
+		<tr>
+			<td>From: <%= link_to "#{message.sender.name} #{message.sender.surname}", message.sender %></td>
+			<td></td>
+			<td><%= "#{message.created_at.day}.#{message.created_at.month}.#{message.created_at.year}" %></td>
+		</tr>
+		<% end %>
+	</table>
+
+</div>
+<div class="span6">
+	<legend>
+		<h1>Sent messages</h1>
+	</legend>
+
+	<table>
+		<% @sent_messages.each do |message| %>
+		<tr>
+			<th><%= message.title %></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<td><%= message.content %></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td><%= link_to 'Show', user_message_path(@user, message) %>
+				<%= link_to 'Destroy', [@user, message], method: :delete %>
+			</td>
+		</tr>
+		<tr>
+			<td>To: <%= "#{message.recipient.name} #{message.recipient.surname}" %></td>
+			<td></td>
+			<td><%= "#{message.created_at.day}.#{message.created_at.month}.#{message.created_at.year}" %></td>
+		</tr>
+		<% end %>
+	</table>
+	
+	<br />
+	<%= link_to 'New Message', new_user_message_path(@user) %>
+</div>
+

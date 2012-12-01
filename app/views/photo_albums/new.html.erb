@@ -1,0 +1,10 @@
+<legend>New photo album</legend>
+<%= form_for([ @user, @photo_album ]) do |f| %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

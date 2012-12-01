@@ -1,7 +1,18 @@
-<h1>PhotoAlbums</h1>
-<% @photo_albums.each do |album|%>
-	<div class="span3">
-		<%= image_tag "empty_album_icon.jpg" %>
-		<h3><%= link_to album.title, root_path %></h3>
-	</div>
-<% end %>
+<div class="page-header">
+	<h1>PhotoAlbums</h1>
+</div>
+<div class="span12">
+	<% if @photo_albums %>
+		<% @photo_albums.each do |album|%>
+			<div class="span3">
+				<%= image_tag "empty_album_icon.jpg" %>
+				<h3><%= link_to album.title, user_photo_album_path(current_user.id, album.id) %></h3>
+			</div>
+		<% end %>
+	<% else %>
+		<% No photo albums%>
+	<% end %>
+</div>
+<div class="span12">
+	<%= link_to 'Add new album', new_user_photo_album_path(@user) %>
+</div>

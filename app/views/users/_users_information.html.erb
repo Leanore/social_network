@@ -1,0 +1,51 @@
+<dl class="dl-horizontal">
+	<% if @user.information.date_of_birth and !@user.information.date_of_birth.blank? %>
+	<dt>
+		<strong>Date of Birth:</strong>
+	</dt>
+	<dd>
+		<%= "#{@user.information.date_of_birth.day}.#{@user.information.date_of_birth.month}.#{@user.information.date_of_birth.year}"%>
+	</dd>
+
+	<% end %>
+	<% if @user.information.gender and !@user.information.gender.empty? %>
+	<dt>
+		<strong>Gender:</strong>
+	</dt>
+	<dd>
+		<%= @user.information.gender %>
+	</dd>
+	<% end %>
+
+	<% if @user.information.country_id %>
+	<dt>
+		<strong>Country:</strong>
+	</dt>
+	<dd>
+		<%= Country.find_by_id(@user.information.country_id).title %>
+	</dd>
+	<% end %>
+
+	<% if @user.information.city_id %>
+	<dt>
+		<strong>City:</strong>
+	</dt>
+	<dd>
+		<%= City.find_by_id(@user.information.city_id).title %>
+	</dd>
+	<% end %>
+
+	<% if @user.information.about and !@user.information.about.empty? %>
+	<dt>
+		<strong>About:</strong>
+	</dt>
+	<dd>
+		<%= @user.information.about %>
+	</dd>
+	<% end %>
+	<br/>
+	<dd>
+		<%= link_to "Change", edit_user_path(current_user) %>
+	</dd>
+	
+</dl>

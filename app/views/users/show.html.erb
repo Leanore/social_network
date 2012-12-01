@@ -1,10 +1,37 @@
-<div class="span3">
-	
-	<%= render 'left_menu'%>
-	
-</div>
-<div class="span9">
+<div class="row well right-page-box">
 
-	<%= render 'users_page'%>
+	<div class="page-header">
+		<h1> <%= "#{@user.name} #{@user.surname}" %>
+		<% if @user == current_user %>
+		<div class="pull-right" style="color: rgb(18, 165, 176);">
+			(your page)
+		</div> <% end %> </h1>
+	</div>
 
+	<div class="span4">
+
+		<%= render 'users_avatar'%>
+
+	</div>
+	<div class="span5">
+
+		<%= render 'users_information'%>
+
+	</div>
+	<div class="span2">
+		<h3>
+			<%= link_to "Photos", user_photo_albums_path(@user) %>
+			<%= link_to "Followers", user_photo_albums_path(@user) %>
+			<%= link_to "Followings", user_photo_albums_path(@user) %>
+		</h3>
+	</div>
+
+	<div class="span9">
+		<hr/>
+		<%= render 'users_posts' %>
+		<br/>
+		<% if current_user.id == @user.id %>
+			<%= render 'new_post' %>
+		<% end %>
+	</div>
 </div>

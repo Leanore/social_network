@@ -1,0 +1,13 @@
+<h1><%= @photo_album.title %></h1>
+<% if @photo_album.photos %>
+	<% @photo_album.photos.each do |photo|%>
+		<div class="span3">
+			<%= image_tag "empty_album_icon.jpg" %>
+			<h3><%= link_to photo.url, user_photo_album_photo_path(current_user.id, album.id, photo.id) %></h3>
+		</div>
+	<% end %>
+<% else %>
+	<% Empty album %>
+<% end %>
+
+<%= link_to 'Add new photo', new_user_photo_album_photo_path%>

@@ -8,8 +8,15 @@
 
 
 puts 'SETTING UP DEFAULT USERS'
-user = User.create :name => 'Elena', :surname => 'Burachevskaya', :email => 'example@example.com', :password => '123456', :password_confirmation => '123456', :confirmed_at => DateTime.now
-
+User.create :name => 'Elena', :surname => 'Burachevskaya', :email => 'elena@example.com', :password => '123456', :password_confirmation => '123456', :confirmed_at => DateTime.now
+User.create :name => 'John', :surname => 'Doe', :email => 'jone@example.com', :password => '123456', :password_confirmation => '123456', :confirmed_at => DateTime.now
+User.create :name => 'Jane', :surname => 'Doe', :email => 'jane@example.com', :password => '123456', :password_confirmation => '123456', :confirmed_at => DateTime.now
+#user1 = User.find_by_id(1)
+#user1.sent_messages.create :content => "Hey, I'm fine. I said I'M FINE! Some another text. Bla-bla-bla. The end. Bye!", :sender => 1, :recipient => 2
+#user2.messages.create :content => "Hello, how are you? Just some text. Bla-bla-bla. The end.", :sender => 2, :recipient => 1
+#Message.create :content => "Hello, how are you? Just some text. Bla-bla-bla. The end.", :sender => 2, :recipient => 1
+#Message.create :content => "Hey, I'm fine. I said I'M FINE! Some another text. Bla-bla-bla. The end. Bye!", :sender => 1, :recipient => 2
+      
 puts 'SETTING UP COUNTRIES'
 
 [

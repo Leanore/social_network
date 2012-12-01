@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_filter :load_user
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    #@posts = Post.all
+    @posts = @user.posts.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
+    @post = @user.posts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +27,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+    #@post = Post.new
+    @post = @user.posts.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +38,20 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
+    @post = @user.posts.find(params[:id])
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    #@post = Post.new(params[:post])
+    @post = @user.posts.new(params[:post])
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        #format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to [@user, @post], notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -56,7 +63,8 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
+    @post = @user.posts.find(params[:id])
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
@@ -72,12 +80,18 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
+    @post = @user.posts.find(params[:id])
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url }
+      #format.html { redirect_to posts_url }
+      format.html { redirect_to user_posts_path(@user) }
       format.json { head :no_content }
     end
+  end
+  
+  def load_user
+    @user = User.find(params[:user_id])
   end
 end
